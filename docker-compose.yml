@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   simple-app:
-    build: .
+    image: jitendrajat/flask-new:latest  # Direct Docker Hub image
     container_name: simple-flask-app
     ports:
       - "5000:5000"
