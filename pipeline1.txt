@@ -1,0 +1,34 @@
+pipeline {
+    agent { label 'node-2' }
+
+    stages {
+        stage('Code') {
+            steps {
+                echo 'Fetching code...'
+                git url:"https://github.com/Jitendra1137/flask-new.git", branch:"main"
+                echo "code cloning successfully"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                sh "whoami"
+                sh "docker build -t flask-new . "
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                sh "docker-compose up -d "
+            }
+        }
+    }
+}
